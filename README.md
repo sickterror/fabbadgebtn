@@ -23,4 +23,4 @@ fabBadgeBtn.setBadgeBackgroundColor(Color.BLACK);
 fabBadgeBtn.setBadgeTextColor(Color.WHITE);
 fabBadgeBtn.setFabIcon(getResources().getDrawable(R.drawable.ic_account_balance_black_24dp));
 fabBadgeBtn.setBadgeNumber(10);
-```
+
