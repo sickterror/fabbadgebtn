@@ -2,9 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/FabBadge.iml" filepath="$PROJECT_DIR$/FabBadge.iml" />
+      <module fileurl="file://C:\Users\Luka\Documents\Programiranja\android-projects\fabbadgebtn\FabBadge.iml" filepath="C:\Users\Luka\Documents\Programiranja\android-projects\fabbadgebtn\FabBadge.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/fabbadgebtn/fabbadgebtn.iml" filepath="$PROJECT_DIR$/fabbadgebtn/fabbadgebtn.iml" />
+      <module fileurl="file://C:\Users\Luka\Documents\Programiranja\android-projects\fabbadgebtn\app\app.iml" filepath="C:\Users\Luka\Documents\Programiranja\android-projects\fabbadgebtn\app\app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/fabbadgebtn.iml" filepath="$PROJECT_DIR$/.idea/fabbadgebtn.iml" />
+      <module fileurl="file://C:\Users\Luka\Documents\Programiranja\android-projects\fabbadgebtn\fabbadgebtn\fabbadgebtn.iml" filepath="C:\Users\Luka\Documents\Programiranja\android-projects\fabbadgebtn\fabbadgebtn\fabbadgebtn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/fabbadgebtn/fabbadgebtn-fabbadgebtn.iml" filepath="$PROJECT_DIR$/fabbadgebtn/fabbadgebtn-fabbadgebtn.iml" />
     </modules>
   </component>
 </project>

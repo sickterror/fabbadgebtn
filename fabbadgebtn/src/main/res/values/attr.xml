@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="FabBadge">
-        <attr name="add_cart_fab_backgroundTint" format="color" />
-        <attr name="add_cart_fab_IconTint" format="color" />
-        <attr name="add_cart_fab_icon" format="reference" />
-        <attr name="add_cart_fab_badge_backgroundTint" format="color" />
-        <attr name="add_cart_fab_badge_textColor" format="color" />
+        <attr name="fab_background_tint" format="color" />
+        <attr name="fab_icon_tint" format="color" />
+        <attr name="fab_icon" format="reference" />
+        <attr name="fab_badge_background_tint" format="color" />
+        <attr name="fab_badge_textColor" format="color" />
     </declare-styleable>
 </resources>

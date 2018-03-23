@@ -1,5 +1,4 @@
 package com.timelesssoftware.fabbadge;
-
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Context;
@@ -7,41 +6,31 @@ import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.animation.FastOutLinearInInterpolator;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
-/**
- * Created by Luka on 9.3.2018.
- */
-
 public class FabBadge extends RelativeLayout {
+
+
+    public boolean enableAnimation = true;
+    public boolean isBadgeShown = false;
 
     private int fabBtnIconTint;
     private int fabBadgeTextColor;
     private int fabBadgeColor;
     private Drawable fabBtnDrawable;
     private int fabBackgroundColor;
-
-
-    FloatingActionButton fabBtn;
-    TextView badge;
-
+    private FloatingActionButton fabBtn;
+    private TextView badge;
     private int mAnimState;
-
     static final int ANIM_STATE_NONE = 0;
     static final int ANIM_STATE_HIDING = 1;
     static final int ANIM_STATE_SHOWING = 2;
 
-    private boolean isBadgeShown = false;
-
-    //FabBadge self;
 
     public FabBadge(Context context) {
         super(context);
@@ -57,11 +46,11 @@ public class FabBadge extends RelativeLayout {
                 0, 0);
 
         try {
-            fabBackgroundColor = a.getColor(R.styleable.FabBadge_add_cart_fab_backgroundTint, Color.WHITE);
-            fabBtnDrawable = a.getDrawable(R.styleable.FabBadge_add_cart_fab_icon);
-            fabBtnIconTint = a.getColor(R.styleable.FabBadge_add_cart_fab_IconTint, Color.WHITE);
-            fabBadgeColor = a.getColor(R.styleable.FabBadge_add_cart_fab_badge_backgroundTint, Color.WHITE);
-            fabBadgeTextColor = a.getColor(R.styleable.FabBadge_add_cart_fab_badge_textColor, Color.BLACK);
+            fabBackgroundColor = a.getColor(R.styleable.FabBadge_fab_background_tint, Color.WHITE);
+            fabBtnDrawable = a.getDrawable(R.styleable.FabBadge_fab_icon);
+            fabBtnIconTint = a.getColor(R.styleable.FabBadge_fab_icon_tint, Color.WHITE);
+            fabBadgeColor = a.getColor(R.styleable.FabBadge_fab_badge_background_tint, Color.WHITE);
+            fabBadgeTextColor = a.getColor(R.styleable.FabBadge_fab_badge_textColor, Color.BLACK);
         } catch (Exception e) {
             a.recycle();
         }
@@ -74,7 +63,9 @@ public class FabBadge extends RelativeLayout {
     }
 
     public void init() {
-        inflate(getContext(), R.layout.fabBadgeBtn_layout, this);
+        inflate(getContext(), R.layout.fab_badge_btn_layout, this);
+        fabBtn = findViewById(R.id.atcf_fab);
+        badge = findViewById(R.id.atcf_badge);
         fabBtn.setImageDrawable(fabBtnDrawable);
         fabBtn.setImageTintList(ColorStateList.valueOf(fabBtnIconTint));
         fabBtn.setBackgroundTintList(ColorStateList.valueOf(fabBackgroundColor));
@@ -83,11 +74,23 @@ public class FabBadge extends RelativeLayout {
         badge.setVisibility(INVISIBLE);
     }
 
+    /**
+     * Hides the button
+     * If animations are enabled it animates the btn
+     * <p>
+     * Taken from FloatingActionBtn
+     */
     public void hide() {
         if (isOrWillBeHidden()) {
             // We either are or will soon be visible, skip the call
             return;
         }
+
+        if (!enableAnimation) {
+            fabBtn.setVisibility(View.VISIBLE);
+            return;
+        }
+
         this.animate().cancel();
         mAnimState = ANIM_STATE_HIDING;
         this.animate()
@@ -117,11 +120,22 @@ public class FabBadge extends RelativeLayout {
                 });
     }
 
+    /**
+     * Shows the button. If animations are enabled showing is animated
+     * <p>
+     * Taken from FloatingActionBtn
+     */
     public void show() {
         if (isOrWillBeShown()) {
             // We either are or will soon be visible, skip the call
             return;
         }
+
+        if (!enableAnimation) {
+            fabBtn.setVisibility(VISIBLE);
+            return;
+        }
+
         this.animate().cancel();
         mAnimState = ANIM_STATE_SHOWING;
         this.animate()
@@ -151,6 +165,77 @@ public class FabBadge extends RelativeLayout {
                 });
     }
 
+
+    /**
+     * Sets the badge number that will be show in the btn
+     * It's recommended that max number is 99 since there is not enough space for more numbers
+     *
+     * @param count - setting the count to zero will hide badge
+     */
+    public void setBadgeNumber(int count) {
+        if (count == 0) {
+            hideBadge();
+            return;
+        }
+        badge.setText(String.valueOf(count));
+        showBadge(enableAnimation);
+        isBadgeShown = true;
+    }
+
+    /**
+     * Hides the badge
+     * The number is not reset
+     */
+    public void hideBadge() {
+        isBadgeShown = false;
+        if (!enableAnimation)
+            badge.animate().scaleX(0f)
+                    .scaleY(0f)
+                    .alpha(0f)
+                    .setDuration(200);
+
+        isBadgeShown = false;
+    }
+
+    /**
+     * @param color
+     */
+    public void setFabBackgroundColor(int color){
+        fabBtn.setBackgroundTintList(ColorStateList.valueOf(color));
+    }
+
+    /**
+     *
+     * @param color
+     */
+    public void setBadgeBackgroundColor(int color) {
+        badge.setBackgroundTintList(ColorStateList.valueOf(color));
+    }
+
+    /**
+     *
+     * @param color
+     */
+    public void setBadgeTextColor(int color) {
+        badge.setTextColor(color);
+    }
+
+    /**
+     *
+     * @param icon
+     */
+    public void setFabIcon(Drawable icon) {
+        fabBtn.setImageDrawable(icon);
+    }
+
+    /**
+     *
+     * @param tint
+     */
+    public void setFabIconTint(int tint) {
+        fabBtn.setImageTintList(ColorStateList.valueOf(tint));
+    }
+
     boolean isOrWillBeShown() {
         if (getVisibility() != View.VISIBLE) {
             // If we not currently visible, return true if we're animating to be shown
@@ -171,40 +256,20 @@ public class FabBadge extends RelativeLayout {
         }
     }
 
-    public void setBadgeNumber(int count) {
-        if (count == 0) {
-            hideBadge(false);
-            return;
-        }
-        badge.setText(String.valueOf(count));
-        showBadge(false);
-    }
 
-    public void setBadgeNumberAnimate(int count) {
-        if (count == 0) {
-            hideBadge(true);
-            return;
-        }
-        badge.setText(String.valueOf(count));
-        showBadge(true);
-    }
-
-    private void hideBadge(boolean animate) {
-        isBadgeShown = false;
-        if (animate)
-            badge.animate().scaleX(0f)
-                    .scaleY(0f)
-                    .alpha(0f)
-                    .setDuration(200);
-    }
-
+    /**
+     * TODO: animation not working gotta fix
+     *
+     * @param animate
+     */
     private void showBadge(boolean animate) {
         isBadgeShown = true;
-        badge.setVisibility(VISIBLE);
-        if (animate)
+        if (animate) {
             badge.animate().scaleX(1f)
                     .scaleY(1f)
                     .alpha(1f)
-                    .setDuration(200);
+                    .setDuration(2000);
+        }
+        badge.setVisibility(VISIBLE);
     }
 }

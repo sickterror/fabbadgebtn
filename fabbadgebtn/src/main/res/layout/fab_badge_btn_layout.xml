@@ -9,26 +9,21 @@
     android:layout_gravity="end|bottom"
     android:id="@+id/frameLayout"
     android:clipChildren="false"
-    android:layout_margin="@dimen/activity_horizontal_margin"
     android:clipToPadding="false"
-   >
+    >
 
     <android.support.design.widget.FloatingActionButton xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/atcf_fab"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-
         app:backgroundTint="#e3e3e3" />
 
     <TextView
         android:id="@+id/atcf_badge"
-        android:layout_width="16dp"
-        android:layout_height="16dp"
-        android:layout_alignBottom="@+id/frameLayout"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:layout_gravity="right|top"
-        android:layout_toLeftOf="@+id/frameLayout"
-        android:layout_toStartOf="@+id/frameLayout"
-        android:background="@drawable/ic_circular_background"
+        android:background="@drawable/ic_background_circular"
         android:elevation="17dp"
         android:gravity="center"
         android:textSize="10sp"
