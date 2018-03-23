@@ -2,7 +2,7 @@
 
 
 Usage:
-```
+```xml
 <com.timelesssoftware.fabbadge.FabBadge
 android:id="@+id/fab_badge_btn"
 android:layout_width="wrap_content"
@@ -16,7 +16,7 @@ app:fab_icon="@drawable/ic_3d_rotation_black_24dp"
 app:layout_anchorGravity="bottom|end" />
 
 From code:
-
+```java
 fabBadgeBtn.setFabBackgroundColor(Color.RED);
 fabBadgeBtn.setFabIconTint(Color.BLACK);
 fabBadgeBtn.setBadgeBackgroundColor(Color.BLACK);
