@@ -14,7 +14,7 @@ app:fab_badge_textColor="#000"
 android:layout_margin="8dp"
 app:fab_icon="@drawable/ic_3d_rotation_black_24dp"
 app:layout_anchorGravity="bottom|end" />
-
+```
 From code:
 ```java
 fabBadgeBtn.setFabBackgroundColor(Color.RED);
@@ -23,4 +23,4 @@ fabBadgeBtn.setBadgeBackgroundColor(Color.BLACK);
 fabBadgeBtn.setBadgeTextColor(Color.WHITE);
 fabBadgeBtn.setFabIcon(getResources().getDrawable(R.drawable.ic_account_balance_black_24dp));
 fabBadgeBtn.setBadgeNumber(10);
-
+```
